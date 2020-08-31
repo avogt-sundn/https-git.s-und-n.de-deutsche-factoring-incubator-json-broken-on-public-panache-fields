@@ -1,5 +1,37 @@
 # json-broken-on-public-panache-fields project
 
+## error description
+
+This project demonstrates an error in json serialization
+during unit testing with Quarkus in the following setup:
+
+* @QuarkusTest is booting the framework
+* extensions
+    - quarkus-resteasy-jackson
+    - quarkus-hibernate-orm-panache 
+* io.restassured
+
+###Observation:
+
+- the public field ``name`` on entity ``MyEntity`` ist not getting send to the service from the QuarkusTest 
+
+### found workaround
+
+Either of these make the getting field serialized:
+
+1. Annotate the field with ``@JsonProperty``.
+2. Make the field private or package-private. 
+
+### Lombok ? No
+
+First assumption that this error might be related to my use of Lombok could not hold.
+
+### Possible situation found during debugging on jackson
+
+The property ``name`` is getting removed here:
+![](debugging-jackson.png)
+
+# Quarkus
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
