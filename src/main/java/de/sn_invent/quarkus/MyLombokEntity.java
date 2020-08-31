@@ -1,6 +1,5 @@
 package de.sn_invent.quarkus;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,22 +10,17 @@ import java.util.UUID;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = false,onlyExplicitlyIncluded = true)
 public class MyLombokEntity extends PanacheEntityBase {
     @Id
     @EqualsAndHashCode.Include
     UUID id;
 
-    /**
-     * You MUST annotte with @JsonProperty!
-     */
-    @JsonProperty
     String name;
 
-    public MyLombokEntity() {
+    public MyLombokEntity(){
         this.id = UUID.randomUUID();
     }
-
     public MyLombokEntity(String s) {
         this();
         this.name = s;
