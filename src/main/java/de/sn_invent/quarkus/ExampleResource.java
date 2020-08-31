@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/tellmeyourname")
+@Consumes(MediaType.APPLICATION_JSON)
 public class ExampleResource {
 
     @POST
