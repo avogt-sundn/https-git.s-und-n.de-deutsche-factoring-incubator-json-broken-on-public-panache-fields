@@ -12,12 +12,24 @@ public class MyEntity extends PanacheEntityBase {
     public UUID id;
 
     public String name;
+    public boolean getWasCalled;
 
-    public MyEntity(){
+    public MyEntity() {
         this.id = UUID.randomUUID();
     }
+
     public MyEntity(String s) {
         this();
         this.name = s;
+    }
+
+    /**
+     * Quarkus augments field access on the public field with a call to this getter.
+     *
+     * @return
+     */
+    public String getName() {
+        this.getWasCalled = true;
+        return this.name;
     }
 }

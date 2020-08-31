@@ -10,19 +10,26 @@ import java.util.UUID;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = false,onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 public class MyPublicFieldsLombokEntity extends PanacheEntityBase {
     @Id
     @EqualsAndHashCode.Include
     public UUID id;
-
+    
     public String name;
+    public boolean getWasCalled;
 
-    public MyPublicFieldsLombokEntity(){
+    public MyPublicFieldsLombokEntity() {
         this.id = UUID.randomUUID();
     }
+
     public MyPublicFieldsLombokEntity(String s) {
         this();
         this.name = s;
+    }
+
+    public String getName() {
+        this.getWasCalled = true;
+        return this.name;
     }
 }
