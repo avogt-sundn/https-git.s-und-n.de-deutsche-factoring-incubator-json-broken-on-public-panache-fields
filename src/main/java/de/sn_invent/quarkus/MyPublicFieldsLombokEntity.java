@@ -1,5 +1,6 @@
 package de.sn_invent.quarkus;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +16,11 @@ public class MyPublicFieldsLombokEntity extends PanacheEntityBase {
     @Id
     @EqualsAndHashCode.Include
     public UUID id;
-    
+
+    /**
+     * You MUST annotte with @JsonProperty!
+     */
+    @JsonProperty
     public String name;
     public boolean getWasCalled;
 
